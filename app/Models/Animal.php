@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Animal extends Model
 {
     use HasFactory;
-    protected $table = 'objects';
+    protected $table = 'animals';
     public $incrementing = false;
     protected $fillable = ['id','name','gender','birthday','is_life','parent_id','child_num'];
 }

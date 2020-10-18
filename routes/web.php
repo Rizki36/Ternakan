@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard.index');
 });
+
+
+Route::get('/animals',[AnimalController::class,'index'])->name("animals.index");
+Route::get('/animals/create',[AnimalController::class,'create'])->name("animals.create");
+Route::get('/animals/parent/{parent_id}',[AnimalController::class,'parent'])->name("animals.parent");
+Route::get('/animals/edit/{id}',[AnimalController::class,'edit'])->name("animals.edit");
+Route::post('/animals/store',[AnimalController::class,'store'])->name("animals.store");
+Route::patch('/animals/update/{id}',[AnimalController::class,'update'])->name("animals.update");
+Route::delete('/animals/delete/{id}',[AnimalController::class,'destroy'])->name("animals.delete");
+
