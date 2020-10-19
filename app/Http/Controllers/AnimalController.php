@@ -24,8 +24,14 @@ class AnimalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.animals.create');
+    {  
+        $fathers = Animal::father()->get()->toArray();
+        $mothers = Animal::mother()->get()->toArray();
+        array_unshift($fathers,["id"=>null,"name"=>""]);
+        array_unshift($mothers,["id"=>null,"name"=>""]);
+        return view('admin.animals.create')
+                    ->with("fathers",$fathers)
+                    ->with("mothers",$mothers);
     }
 
     /**
@@ -47,6 +53,8 @@ class AnimalController extends Controller
         $data['name'] = $request->input("name");
         $data['gender'] = $request->input("gender");
         $data['birthday'] = $request->input("birthday");
+        $data['father_id'] = $request->input("father_id");
+        $data['mother_id'] = $request->input("mother_id");
         $data['is_life'] = true;
         $data['child_num'] = $request->input("child_num");
         $animal = new Animal($data);
@@ -74,8 +82,15 @@ class AnimalController extends Controller
     public function edit($id)
     {
         $animal = Animal::find($id);
+
+        $fathers = Animal::father()->get()->toArray();
+        $mothers = Animal::mother()->get()->toArray();
+        array_unshift($fathers,["id"=>null,"name"=>""]);
+        array_unshift($mothers,["id"=>null,"name"=>""]);
         return view('admin.animals.edit')
-                ->with('animal',$animal);
+                ->with('animal',$animal)
+                ->with('mothers',$mothers)
+                ->with('fathers',$fathers);
     }
 
     /**
@@ -99,6 +114,8 @@ class AnimalController extends Controller
         $animal['name'] = $request->input("name");
         $animal['gender'] = $request->input("gender");
         $animal['birthday'] = $request->input("birthday");
+        $animal['father_id'] = $request->input("father_id");
+        $animal['mother_id'] = $request->input("mother_id");
         $animal['is_life'] = true;
         $animal['child_num'] = $request->input("child_num");
         $animal->save();
@@ -120,5 +137,10 @@ class AnimalController extends Controller
     public function parent($id)
     {
         # code...
+    }
+
+    public function json()
+    {
+        return Animal::all(["id","name","father_id","mother_id"])->toJson();
     }
 }

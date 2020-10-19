@@ -24,7 +24,6 @@
                             <td>Gender</td>
                             <td>Birthday</td>
                             <td>Is Life</td>
-                            <td>Parent</td>
                             <td>Child Number</td>
                             <td>Action</td>
                         </tr>
@@ -46,13 +45,10 @@
                             </td>
                             <td>{{ $animal->birthday }}</td>
                             <td>{{ $animal->is_life }}</td>
-                            <td>
-                                <a href="{{ route("animals.parent",["parent_id"=>'a']) }}" class="btn btn-sm btn-primary">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                            </td>
+                            
                             <td>{{ $animal->child_num }}</td>
                             <td>
+                                <a href="{{ route("animals.parent",["parent_id"=>'a']) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
                                 <a href="{{ route("animals.edit",['id'=>$animal->id]) }}" class="btn btn-sm bg-gradient-yellow"><i class="fa fa-edit"></i></a>
                                 <form class="d-inline" action="{{ route("animals.delete",['id'=>$animal->id]) }}" method="post">
                                     @csrf

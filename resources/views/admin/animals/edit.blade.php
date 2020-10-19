@@ -59,15 +59,34 @@
                     </div>
                 </div>
                 
-                <div class="form-group col-12 d-none">
-                    <label for="parent">Parent</label>
-                    <input id="parent" name="parent" type="text" class="form-control @error('parent') is-invalid @enderror" value="">
+                <div class="form-group col-12">
+                    <label for="father_id">Father</label>
+                    <select name="father_id" class="form-control" id="father_id">
+                        @foreach ($fathers as $father)
+                        <option value="{{ $father["id"] }}" {{ $animal->father_id ?? "" == $father["id"] ? 'selected' : '' }}>{{ $father["id"] }} - {{ $father["name"] }}</option>
+                        @endforeach
+                    </select>
                     <div class="invalid-feedback">
-                        @error('parent')
+                        @error('father_id')
                         {{ $message }}
                         @enderror
                     </div>
                 </div>
+
+                <div class="form-group col-12">
+                    <label for="mother_id">Mother</label>
+                    <select name="mother_id" class="form-control" id="mother_id">
+                        @foreach ($mothers as $mother)
+                        <option value="{{ $mother["id"] }}" {{ $animal->mother_id ?? "" == $mother["id"] ? 'selected' : '' }}>{{ $mother["id"] }} - {{ $mother["name"] }}</option>
+                        @endforeach
+                    </select>
+                    <div class="invalid-feedback">
+                        @error('mother_id')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="form-group col-12">
                     <label for="child_num">Child Number</label>
                     <input id="child_num" name="child_num" type="text" class="form-control @error('child_num') is-invalid @enderror" value="{{ $animal->child_num ?? "" }}">
