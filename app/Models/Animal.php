@@ -14,11 +14,11 @@ class Animal extends Model
 
     public function scopeFather($query)
     {
-        return $query->where("gender","f");
+        return $query->where("gender","m");
     }
 
     public function scopeMother($query)
     {
-        return $query->where("gender","m");
+        return $query->where("gender","f");
     }
 }

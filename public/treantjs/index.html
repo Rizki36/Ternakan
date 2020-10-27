@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>title</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 <!-- stylesheets -->
+    <link rel="stylesheet" href="treantjs/Treant.css" type="text/css"/>
+</head>
+
+<body>
+	<!-- HTML -->
+	<div id="tree-simple" style="width:100vw; height: 100vh"> </div>
+	
+	 <!-- javascript -->
+	 <script src="treantjs/vendor/jquery.min.js"></script>
+    <script src="treantjs/vendor/raphael.js"></script>
+    <script src="treantjs/Treant.js"></script>
+	<script>
+		/* javascript */
+		
+		simple_chart_config = {
+			chart: {
+				container: "#tree-simple"
+			},
+			nodeStructure: {
+				text: { name: "Aku" },
+				children: [
+					{
+						text: { name: "Bapak" },
+						children: [
+							{
+								text: { name: "Bapak e Bapak" },
+						
+							},
+							{
+								text: { name: "Ibuk e Bapak" }
+							}
+						]
+					},
+					{
+						text: { name: "Ibuk" },
+						children: [
+							{
+								text: { name: "Bapak e Ibuk" },
+						
+							},
+							{
+								text: { name: "Ibuk e Ibuk" }
+							}
+						]
+					}
+				]
+			}
+		};
+		var chart = new Treant(simple_chart_config, function() { alert( 'Tree Loaded' ) }, $ );
+	</script>
+</body>
+</html>

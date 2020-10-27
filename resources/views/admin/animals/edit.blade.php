@@ -40,8 +40,8 @@
                     <label for="gender">Gender</label>
                     <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror">
                         <option value=""></option>
-                        <option value="m" {{ $animal->gender ?? "" == "m" ? 'selected' : '' }}>Male</option>
-                        <option value="f" {{ $animal->gender ?? "" == "f" ? 'selected' : '' }}>Female</option>
+                        <option value="m" {{ $animal->gender == "m" ? 'selected' : '' }}>Male</option>
+                        <option value="f" {{ $animal->gender == "f" ? 'selected' : '' }}>Female</option>
                     </select>
                     <div class="invalid-feedback">
                         @error('gender')
@@ -63,7 +63,7 @@
                     <label for="father_id">Father</label>
                     <select name="father_id" class="form-control" id="father_id">
                         @foreach ($fathers as $father)
-                        <option value="{{ $father["id"] }}" {{ $animal->father_id ?? "" == $father["id"] ? 'selected' : '' }}>{{ $father["id"] }} - {{ $father["name"] }}</option>
+                        <option value="{{ $father["id"] }}" {{ $animal->father_id == $father["id"] ? 'selected' : '' }}>{{ $father["id"] }} - {{ $father["name"] }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -77,7 +77,7 @@
                     <label for="mother_id">Mother</label>
                     <select name="mother_id" class="form-control" id="mother_id">
                         @foreach ($mothers as $mother)
-                        <option value="{{ $mother["id"] }}" {{ $animal->mother_id ?? "" == $mother["id"] ? 'selected' : '' }}>{{ $mother["id"] }} - {{ $mother["name"] }}</option>
+                        <option value="{{ $mother["id"] }}" {{ $animal->mother_id == $mother["id"] ? 'selected' : '' }}>{{ $mother["id"] }} - {{ $mother["name"] }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">

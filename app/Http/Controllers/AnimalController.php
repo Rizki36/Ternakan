@@ -134,13 +134,14 @@ class AnimalController extends Controller
         return redirect()->route("animals.index");
     }
 
-    public function parent($id)
+    public function pedigree($id)
     {
-        # code...
+        $animals = Animal::all(['id','name','father_id','mother_id']);
+        return view('admin.animals.pedigree')->with('animals',$animals)->with('parent_node_id',$id);
     }
 
     public function json()
     {
-        return Animal::all(["id","name","father_id","mother_id"])->toJson();
+        return response()->json(Animal::all(["id","name","father_id","mother_id"]));
     }
 }
