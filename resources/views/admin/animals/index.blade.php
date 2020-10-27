@@ -9,7 +9,7 @@
 @endsection
 
 @section('main')
-    @include('preview')    
+    {{-- @include('preview')     --}}
     <div class="card w-100">
         <div class="card-header d-flex">
             <span class="ml-auto"><a href="{{ route('animals.create') }}" class="btn bg-purple">Add Animals</a></span>
